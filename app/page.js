@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from "react";
 const C = {
   bg: "#14161e",
@@ -71,10 +70,10 @@ const slides = [
           <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 28, display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 13, color: C.accent, textTransform: "uppercase", letterSpacing: 1.5, fontWeight: 600, marginBottom: 14 }}>Lead Nurture Engine</div>
             <div style={{ fontSize: 16, color: C.text, lineHeight: 1.7, flex: 1 }}>
-              Automated email outreach across four practitioner segments. Each segment gets a 7-email sequence tailored to their role, pain points, and buying behavior. Replies are classified and routed. Positive responses trigger meeting booking.
+              Automated email outreach across five campaign tracks — three practitioner segments from the purchased list, plus two conference-specific tracks. Each track gets a tailored sequence matched to the audience and how they entered the pipeline. Replies are classified and routed. Positive responses trigger meeting booking.
             </div>
             <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {["3 domains", "9 inboxes", "4 segments", "7-email sequences", "AI reply handling"].map((t, i) => (
+              {["3 domains", "9 inboxes", "5 tracks", "7-email sequences", "AI reply handling"].map((t, i) => (
                 <span key={i} style={{ fontSize: 12, color: C.accent, backgroundColor: C.accentDim, padding: "5px 12px", borderRadius: 20 }}>{t}</span>
               ))}
             </div>
@@ -116,30 +115,40 @@ const slides = [
     content: (
       <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: "52px 60px 36px" }}>
         <div style={{ fontSize: 12, letterSpacing: 2, color: C.accent, textTransform: "uppercase", marginBottom: 8 }}>Targeting</div>
-        <h2 style={{ fontSize: 32, fontWeight: 700, color: C.text, marginBottom: 32 }}>Four Practitioner Tracks</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, flex: 1 }}>
+        <h2 style={{ fontSize: 32, fontWeight: 700, color: C.text, marginBottom: 32 }}>Five Campaign Tracks</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, flex: 1 }}>
           {[
-            { track: "Track 1", name: "Massage Therapists", color: C.accent, desc: "Largest segment. Integration angle: pain management adjunct, treatment enhancement, client retention.", status: "Copy complete", statusColor: C.green },
-            { track: "Track 2", name: "Physical Therapists", color: C.blue, desc: "Clinical integration angle. Recovery support, treatment protocol complement, patient outcomes.", status: "Copy in progress", statusColor: C.yellow },
-            { track: "Track 3", name: "Spa Directors / Wellness Centers", color: "#ec4899", desc: "Revenue and experience angle. Premium service add-on, client differentiation, membership enhancement.", status: "Copy in progress", statusColor: C.yellow },
-            { track: "Track 4", name: "Distributors / Wholesale", color: "#f97316", desc: "Smallest segment. Business opportunity angle. Margin, product demand, retail partner support.", status: "Copy in progress", statusColor: C.yellow },
+            { track: "Track 1", name: "Massage Therapists + Spa Directors", color: C.accent, desc: "Combined segment. Treatment integration, client experience, premium service add-on, retention.", status: "2,921 leads", statusColor: C.accent, tag: "Purchased List" },
+            { track: "Track 2", name: "Physical Therapists", color: C.blue, desc: "Clinical integration angle. Recovery support, treatment protocol complement, patient outcomes.", status: "2,198 leads", statusColor: C.blue, tag: "Purchased List" },
+            { track: "Track 3", name: "Distributors / Wholesale", color: "#f97316", desc: "Business opportunity angle. Margin, product demand, retail partner support, institutional sales.", status: "2,277 leads", statusColor: "#f97316", tag: "Purchased List" },
           ].map((t, i) => (
-            <div key={i} style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 24 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: t.color, backgroundColor: t.color + "18", padding: "4px 10px", borderRadius: 6 }}>{t.track}</span>
-                  <span style={{ fontSize: 17, fontWeight: 600, color: C.text }}>{t.name}</span>
-                </div>
+            <div key={i} style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 22 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.color, backgroundColor: t.color + "18", padding: "3px 8px", borderRadius: 6 }}>{t.track}</span>
+                <span style={{ fontSize: 10, color: C.muted, backgroundColor: C.bg, padding: "3px 8px", borderRadius: 6 }}>{t.tag}</span>
               </div>
-              <div style={{ fontSize: 15, color: C.muted, lineHeight: 1.6, marginBottom: 14 }}>{t.desc}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: t.statusColor }} />
-                <span style={{ fontSize: 13, color: t.statusColor }}>{t.status}</span>
-              </div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: C.text, marginBottom: 8 }}>{t.name}</div>
+              <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, marginBottom: 12 }}>{t.desc}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: t.statusColor }}>{t.status}</div>
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 16 }} />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 14 }}>
+          {[
+            { track: "Track 4", name: "Conference Attendees", color: C.green, desc: "Pre-conference warm-up (3 emails) + post-conference follow-up (5 emails). Name recognition before the event, relationship building after.", status: "~1,000 leads (pending)", statusColor: C.green, tag: "Conference List" },
+            { track: "Track 5", name: "Massage Therapist Conference Leads", color: C.yellow, desc: "~50 leads from Alka's conference this week. Separate track with post-conference specific wording. Alka has met these contacts in person.", status: "~50 leads (incoming)", statusColor: C.yellow, tag: "Specialized Conference" },
+          ].map((t, i) => (
+            <div key={i} style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 22 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: t.color, backgroundColor: t.color + "18", padding: "3px 8px", borderRadius: 6 }}>{t.track}</span>
+                <span style={{ fontSize: 10, color: C.muted, backgroundColor: C.bg, padding: "3px 8px", borderRadius: 6 }}>{t.tag}</span>
+              </div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: C.text, marginBottom: 8 }}>{t.name}</div>
+              <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, marginBottom: 12 }}>{t.desc}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: t.statusColor }}>{t.status}</div>
+            </div>
+          ))}
+        </div>
       </div>
     ),
   },
@@ -276,9 +285,8 @@ const slides = [
           <div style={{ backgroundColor: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: 24 }}>
             <div style={{ fontSize: 13, color: C.accent, textTransform: "uppercase", letterSpacing: 1.5, fontWeight: 600, marginBottom: 16 }}>Classification (7,396 eligible)</div>
             {[
-              { segment: "Massage Therapists", count: "122", logic: "Title contains massage/LMT/bodywork", color: C.accent },
+              { segment: "Massage Therapists + Spa Directors", count: "2,921", logic: "Combined. Massage/LMT/bodywork + spa/esthetician/wellness/beauty/holistic", color: C.accent },
               { segment: "Physical Therapists", count: "2,198", logic: "PT/DPT titles, rehab/orthopedic/sports/fitness companies", color: C.blue },
-              { segment: "Spa Directors", count: "2,799", logic: "Spa/esthetician/aesthetician, wellness/beauty/holistic businesses", color: "#ec4899" },
               { segment: "Distributors", count: "2,277", logic: "Sales/distribution/wholesale, non-competitor CBD brands, hospital/healthcare orgs", color: "#f97316" },
             ].map((s, i) => (
               <div key={i} style={{ marginBottom: i < 3 ? 12 : 0, paddingBottom: i < 3 ? 12 : 0, borderBottom: i < 3 ? `1px solid ${C.border}` : "none" }}>
@@ -325,8 +333,8 @@ const slides = [
             {[
               "Chiropractors and acupuncturists excluded per Alka's direction in the kickoff brief",
               "Known CBD competitors excluded (Charlotte's Web, Green Roads, Extract Labs, etc.)",
+              "Massage Therapists and Spa Directors combined into a single track (shared treatment integration angle)",
               "Fitness/gym/sports companies classified as Physical Therapist (recovery/pain angle)",
-              "Wellness studios, beauty, and holistic businesses classified as Spa Director",
               "Non-competitor CBD brands classified as Distributor (potential wholesale partners)",
               "Hospital/healthcare decision-makers classified as Distributor (B2B institutional sales)",
             ].map((item, i) => (
